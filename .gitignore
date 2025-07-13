@@ -1,0 +1,36 @@
+# Node.js
+node_modules/
+
+# Build output
+dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Angular
+frontend/.angular/cache/
+
+# Env files
+.env
+
+# Others
+coverage/
+
+# Optional: ignore public if not needed
+# frontend/public/
+
+# Backend
+backend/node_modules/
+backend/dist/
+backend/.env
+backend/coverage/
