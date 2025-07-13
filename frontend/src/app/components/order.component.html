@@ -1,0 +1,14 @@
+<div>
+  <h2>Orders</h2>
+  <form (ngSubmit)="addOrder()">
+    <input [(ngModel)]="newOrder.name" name="name" placeholder="Order Name" required />
+    <input [(ngModel)]="newOrder.quantity" name="quantity" type="number" min="1" required />
+    <button type="submit">Add Order</button>
+  </form>
+  <ul>
+    <li *ngFor="let order of orders">
+      {{ order.name }} - {{ order.quantity }}
+    </li>
+  </ul>
+  <button (click)="refreshOrders()">Refresh Orders</button>
+</div>

@@ -5,10 +5,14 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-RUN npm run build --prod
+RUN npm run build && cp dist/frontend-app/browser/index.csr.html dist/frontend-app/browser/index.html
 
-# Nginx ile serve et
-FROM nginx:latest
-COPY --from=build /app/dist/frontend-app/browser/ /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+# Production image
+FROM node:latest
+WORKDIR /app
+COPY --from=build /app/dist ./dist
+COPY --from=build /app/server.js ./server.js
+COPY --from=build /app/package*.json ./
+RUN npm install --omit=dev
+EXPOSE 4200
+CMD ["node", "server.js"]
